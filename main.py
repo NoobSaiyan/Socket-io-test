@@ -1,4 +1,4 @@
-from flask import Flask
+from flask import Flask, render_template
 import os
 from flask_socketio import SocketIO, emit
 
@@ -9,9 +9,13 @@ app = Flask(__name__)
 # app.config.from_object(Config)
 socketio = SocketIO(app)
 
-@app.route('/')
+@app.route('/test')
 def hello():
     return 'Noni'
+
+@app.route('/')
+def index():
+    return render_template('index.html')
 
 @socketio.on('connect')
 def test_connect():
